@@ -1,0 +1,505 @@
+@import '~bootstrap';
+@import 'variables';
+@import 'mixins';
+ 
+
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: Tahoma, Helvetica, Arial;
+}
+html{
+    scroll-behavior: smooth;
+}
+
+.false{
+    color:$false;
+}
+.modall{
+    display:flex;
+    opacity: 1;
+}
+
+body{
+    background-color:$gray;
+    background-image: url("../assets/images/abstract.jpg"); 
+    background-size:cover;
+    background-attachment: fixed;
+    background-position: center;
+    transition: background-image 0.4s;
+    z-index: 1;
+    
+    .menuprincipal{
+        position: fixed;
+        z-index:1;
+        right:0;
+        display:block;
+        top:0;
+        width:0;
+        height:100vh;
+        background: #4860FF;
+        z-index:90000000000000000000000000;
+        transition: 0.3s ease-in-out;
+        border-bottom-left-radius: 100px;
+        
+        ul{
+            padding-top:150px;
+            width:80%;
+            margin:0 auto;
+            list-style:none;
+            li{
+                text-align:left;
+                padding: 10px 0;
+                border-top: 1px solid white;
+                width:100%;
+                &:hover{
+                    background: rgba(0,0,0,0.3);
+                }
+                a{
+                    color:white;
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                    padding-right: 80%;
+                    &:hover{
+                        text-decoration: none;
+                        
+                    }
+                    
+                }
+            }
+            &:last-child{
+                border-bottom: 1px solid white;        
+            }
+        }
+    }
+
+
+    header{
+        width:100%;
+        height:75px;
+        background-color:$tsiAzul;
+        position:fixed;
+            top:0;
+            left:0;
+            z-index: 30000000000000;
+                nav{
+                    color:white;
+
+                        .row{
+                            .esquerda{
+                                width:100%;
+                                height:75px;
+                                a{
+                                    img{
+                                        width:145px;
+                                    }
+                                }
+                            }
+                            .direita{
+                                width:100%;
+                                height:75px;
+                                form{
+                                    position:relative;
+                                    input[type='search']{
+                                        margin-right: 20px;
+                                        width:105px;
+                                        transition:all 0.5s;
+                                        height: 30px;
+                                       
+                                        &:focus{
+                                            width:400px;
+                                            border: 1px solid green;
+                                        }
+                                        
+                                    }
+                                    .lupa{
+                                        position:absolute;
+                                        top:5px;
+                                        right:25px;
+                                    }
+                                }
+                                
+                                a{
+                                    color:white;
+                                    padding:6px 20px;
+                                    background-color:blue;
+                                    transition:all 0.5s;
+                                    margin-left: 5px;
+                                    border-radius: 15px;
+
+                                    &:hover{
+                                        text-decoration: none;
+                                        background-color:white;
+                                        color:green;
+                                    }
+                                }
+                                ul{
+                                    margin:0;
+                                    padding:0;
+                                    li{
+                                        display:inline;
+                                        margin-right: 10px;
+                                        list-style: none;
+                                    }
+                                }
+                            }
+
+                            .menu{
+                                label{
+                                    .hamburguer{
+                                        cursor:pointer;
+                                        width:50px;
+                                        height: 50px;
+                                        background: blue;
+                                        border-radius:100%;
+                                        display:block;
+                                        position:relative;
+                                        span{
+                                            display:block;
+                                            background:#fff;
+                                            width:30px;
+                                            height:2px;
+                                            position:relative;
+                                            top:25px;
+                                            left:10px;
+                                            transition: 0.5s ease-in-out;
+                                                &::before{
+                                                    background:#fff;
+                                                    content:'';
+                                                    display:block;
+                                                    width:100%;
+                                                    height:100%;
+                                                    position:absolute;
+                                                    top:-10px;
+                                                    z-index:5000000;
+                                                    transition: 0.5s ease-in-out;
+                                                }
+                                                &::after{
+                                                    background:#fff;
+                                                    content:'';
+                                                    display:block;
+                                                    width:100%;
+                                                    height:100%;
+                                                    position:absolute;
+                                                    bottom:-10px;
+                                                    z-index:5000000;
+                                                    transition: 0.5s ease-in-out;
+                                                }
+                                           
+                                            }
+                                        
+                                        
+                                    }
+                                }
+                                input{
+                                    display:none;
+                                }
+
+                                input:checked ~ label .hamburguer span{
+                                    transform:rotate(45deg);
+                                }
+
+                                input:checked ~ label .hamburguer span::before{
+                                    transform:rotate(90deg);
+                                    top:0;
+                                }
+
+                                input[type=checkbox]:checked ~ label .hamburguer span::after{
+                                    transform:rotate(90deg);
+                                    bottom:0;
+                                }
+                            }  
+                        }
+                    }
+                }
+
+
+                
+
+
+                
+        
+
+        .modalll{
+            z-index:1000;
+            position:fixed;
+            overflow:hidden;
+            top:0;
+            left:0;
+            background-color: rgba(0,0,0,0.0);
+            width:100%;
+            height:100vh;
+            display:none;
+            transition: all 1s;
+            .modal-centerr{
+                
+                width:320px;
+                height:400px;
+                background: white;
+                border-radius: 50px;
+                position:relative;
+                .xis{
+                    position: absolute;
+                    top:15px;
+                    right:15px;
+                    border:1px solid gray;
+                    width:25px;
+                    height:25px;
+                    border-radius: 5px;
+                    transition: all 0.7s;
+                    &:hover{
+                        background-color:gray;
+                        color:white;
+                        cursor:pointer;
+                    }
+                }
+            }
+        }
+        .modall{
+            display:flex;
+            opacity: 1;
+        }
+
+    .conteudo {
+        width:100%;
+        height:auto;
+        background:rgba(0,0,0,0.6);
+        margin: 100px auto;
+        width:90%;
+        position:relative;
+            .prev{
+                position:absolute;
+                top:41%;
+                left:50px;
+                background: rgba(0,0,0,0.3);
+                width:100px;
+                height:100px;
+                border-radius: 100%;
+                transition:all 0.3s;
+                img{
+                    &:hover{
+                        transform:scale(1.2);
+                    }
+                }
+            }
+            .prox{
+                position:absolute;
+                top:41%;
+                right:50px; 
+                background: rgba(0,0,0,0.3);
+                width:100px;
+                height:100px;
+                border-radius: 100%;
+                transition:all 0.3s;
+                img{
+                    transform:rotate(180deg);
+                    &:hover{
+                        transform:rotate(180deg) scale(1.2);
+                    }
+                }
+            }
+        h3{
+            color:white;
+            padding:20px;
+        }
+        .slide{
+            width:100%;
+            height:auto;
+            
+            .noticiaslide{
+                padding:0;
+                width:100%;
+                margin:0 auto;
+                height:450px;
+                background-size:cover;
+                background-position:center;
+                position:relative;
+                color:white;
+                margin-bottom:20px;
+                a{
+                    color:white;
+                    transition:all 0.3s;
+                    &:hover{
+                        color:gray;
+                    }
+                    .noticiatitulo{
+                        position:absolute;
+                        bottom:0;
+                        left:0;
+                        width:100%;
+                        height:100px;
+                        background-color:rgba(0,0,0,0.3);
+                        .titulo{
+                            font-size:40px;
+                            margin-left:20px;
+                        }
+                        .data{
+                            font-size:15px;
+                            margin-left:20px;
+                        }
+                    }
+                }
+           }
+        }
+
+        .confira{
+            margin:20px auto;
+            text-align:center;
+            padding-bottom: 20px;
+            a{
+                padding:20px 40px;
+            }
+        }
+    
+    }
+
+
+    .egressos{
+        width:100%;
+        height:auto;
+        background: rgba(0,0,0,0.3);
+        margin-bottom:100px;
+        h3{
+            color:white;
+            text-align: center;
+            padding:20px;
+        }
+        .egressosslide{
+            width:90%;
+            height:auto;
+            background:rgba(74,121,255,0.3);
+            margin:0 auto;
+            .aluno{
+                width:90%;
+                height:400px;
+                background-size:cover;
+                background-position:center;
+                position:relative;
+                background-repeat: no-repeat;
+                .apresentacao{
+                    position: absolute;
+                    bottom:0;
+                    left:0;
+                    width:100%;
+                    height:100px;
+                    background: rgba(0,0,0,0.3);
+                    .nome{
+                        color:white;
+                        text-align:center;
+                        margin:0;
+                        padding:0;
+                    }
+                    .funcao{
+                        color:white;
+                        text-align:center;
+                    }
+                    .empresa{
+                        color:white;
+                        text-align:center;
+                    }
+                }
+            }
+            
+        }
+
+        .egressoss{
+            margin:20px auto;
+            text-align:center;
+            padding-bottom: 20px;
+            a{
+                padding:20px 40px;
+                text-align:center;
+            }
+        }
+    }
+
+
+    footer{
+        width:100%;
+        background-color:rgba(58,88,255,0.9);
+        height:180px;
+        .container{
+            border-top:1px solid white;
+            .cont{
+                height:90%;
+                color:white;
+                .row{
+                    .direita{
+                        a{
+                            float:left;
+                            margin-top: 10px;
+                        }
+
+                    }
+                    .centro{
+                        margin-top: 10px;
+                    }
+                    .esquerda{
+                        a{
+                            float:right;
+                            margin-top: 10px;
+                        }
+                    }
+                }
+            }
+            p{
+                color:white;
+                padding:0;
+                margin:0;
+                font-size:9px;
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@import 'HD';
+@import 'tablet';
+@import 'celular';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
