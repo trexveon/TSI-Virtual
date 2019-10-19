@@ -10805,6 +10805,24 @@ body header nav .row .menu label .hamburguer {
   border-radius: 100%;
   display: block;
   position: relative;
+  transition: all 0.3s ease-in-out;
+}
+
+body header nav .row .menu label .hamburguer:hover {
+  background-color: white;
+  border: 1px solid green;
+}
+
+body header nav .row .menu label .hamburguer:hover span {
+  background-color: green;
+}
+
+body header nav .row .menu label .hamburguer:hover span::after {
+  background-color: green;
+}
+
+body header nav .row .menu label .hamburguer:hover span::before {
+  background-color: green;
 }
 
 body header nav .row .menu label .hamburguer span {
@@ -10842,35 +10860,35 @@ body header nav .row .menu label .hamburguer span::after {
   transition: 0.5s ease-in-out;
 }
 
-body header nav .row .menu input {
+body header nav .row .menu input[type=checkbox] {
   display: none;
 }
 
-body header nav .row .menu input:checked ~ label .hamburguer span {
+body header nav .row .menu input[type=checkbox]:checked ~ label .hamburguer span {
   transform: rotate(45deg);
 }
 
-body header nav .row .menu input:checked ~ label .hamburguer span::before {
+body header nav .row .menu input[type=checkbox]:checked ~ label .hamburguer span:before {
   transform: rotate(90deg);
   top: 0;
 }
 
-body header nav .row .menu input[type=checkbox]:checked ~ label .hamburguer span::after {
+body header nav .row .menu input[type=checkbox]:checked ~ label .hamburguer span:after {
   transform: rotate(90deg);
   bottom: 0;
 }
 
 body .modalll {
-  z-index: 1000;
+  z-index: 999999999999999900000000000;
   position: fixed;
   overflow: hidden;
   top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0);
-  width: 100%;
-  height: 100vh;
-  display: none;
-  transition: all 1s;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 0;
+  height: 0;
+  display: flex;
+  transition: all 0.6s ease-in-out;
 }
 
 body .modalll .modal-centerr {

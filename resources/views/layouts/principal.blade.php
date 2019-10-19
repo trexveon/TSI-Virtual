@@ -44,13 +44,16 @@
                             </div>
 
                             <div class="col-sm-1 col-md-1 col-lg-1 col-xl-1 text-right  d-flex flex-row justify-content-end align-items-center menu">
+
+                                <input type="checkbox" id="inputhamburguer" >
+
                                <label for="inputhamburguer">
                                     <div class="hamburguer">
                                         <span></span>
                                     </div>
                                </label>
 
-                               <input type="checkbox" id="inputhamburguer">
+                               
                             </div>
         
                         </div>
@@ -70,10 +73,7 @@
 
                 
             
-                    <script src="{{asset('js/jQuery.js')}}"></script>
-                    <script src="{{asset('js/slick.min.js')}}"></script>
-                    <script src="{{mix('js/app.js')}}"></script>
-                </body>
+                    
 
 
 
@@ -104,4 +104,9 @@
                     </div>
                     
                 </footer>
+
+                    <script src="{{asset('js/jQuery.js')}}"></script>
+                    <script src="{{asset('js/slick.min.js')}}"></script>
+                    <script src="{{mix('js/app.js')}}"></script>
+                </body>
             </html>
