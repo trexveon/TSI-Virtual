@@ -19237,76 +19237,397 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 var login = document.querySelector('.login');
 var modal = document.querySelector('.modalll');
-var xis = document.querySelector('.xis');
-var form = document.querySelector('.modal-centerr');
-var body = document.getElementsByTagName('BODY')[0];
+var xis = document.querySelectorAll('.xis');
+var form = document.querySelectorAll('.modal-centerr');
 var menuprincipal = document.querySelector('.menuprincipal');
 var hamburguer = document.querySelector('.hamburguer');
-login.addEventListener('click', function (e) {
-  e.preventDefault(); // modal.style.display = 'flex';
-  // count = 1;
-  // interval = setInterval(()=>{
-  //     console.log(modal.style.backgroundColor);
-  //     modal.style.backgroundColor = 'rgba(0,0,0,0.'+count+')';
-  //     if(modal.style.backgroundColor == 'rgba(0, 0, 0, 0.6)'){
-  //         clearInterval(interval);
-  //     }
-  //     count++;
-  // },100);
+var contatoemail = document.querySelector('.contatoemail');
+var contato = document.querySelector('.contato');
+var emailenviar = document.querySelector('.emailenviar');
+var xis2 = document.querySelector('.xis2');
+var aviso = document.querySelector('.alerta');
+var enviar = document.querySelector('.enviar');
+var footer = document.querySelector('.footer');
+var header = document.querySelector('.header');
+var blurr = document.querySelectorAll('.blur');
+var nome = document.querySelector('.nome');
+var email = document.querySelector('.email');
+var assunto = document.querySelector('.assunto');
+var mensagem = document.querySelector('.mensagem');
+var erronome = document.querySelector('.erronome');
+var erroemail = document.querySelector('.erroemail');
+var erroassunto = document.querySelector('.erroassunto');
+var erromensagem = document.querySelector('.erromensagem');
+var invalidofeedback = document.querySelector('.invalidofeedback');
+var log = document.querySelector('.log');
+var reg = document.querySelector('.reg');
+var logi = document.querySelector('.logi');
+var regi = document.querySelector('.regi');
+var jscanvas = document.querySelector('#canvas-js');
+var openSubmenu = document.querySelector('.opensubmenu');
+var submenu = document.querySelector('.submenu');
+var consulta = document.querySelector('.consulta');
+var pesquisarnumero = document.querySelector('.pesquisarnumero');
+var mens = document.querySelector('.aviso');
+var simregistro = document.querySelector('.simregistro');
+var naoregistro = document.querySelector('.naoregistro');
+var idusuario = document.querySelector('.idusuario');
+var roleusuario = document.querySelector('.roleusuario');
+var idusuario1 = document.querySelector('.idusuario1');
+var roleusuario1 = document.querySelector('.roleusuario1');
 
-  modal.style.width = '100%';
-  modal.style.height = '100vh';
-  document.body.style.overflow = "hidden";
+if (consulta) {
+  $('.consulta').mask('000000000000');
+}
+
+pesquisarnumero.addEventListener('click', function (e) {
+  var valid = true;
+
+  if (consulta.value.length < '9') {
+    mens.innerHTML = 'Insira seu siape (9 digitos) ou matricula (12 digitos)';
+    valid = false;
+  } else {
+    if (consulta.value.length < '12' && consulta.value.length > '9') {
+      mens.innerHTML = 'Insira seu siape (9 digitos) ou matricula (12 digitos)';
+      valid = false;
+    } else {
+      mens.innerHTML = '';
+    }
+  }
+
+  if (valid == false) {
+    return false;
+  }
+
+  aviso.classList.remove('alert-success');
+  aviso.classList.remove('alert-danger');
+  aviso.classList.add('alert-primary');
+  aviso.innerHTML = 'Carregando...';
+  $('.alerta').fadeIn();
+  $.ajax({
+    type: "GET",
+    url: "api/consulta",
+    async: true,
+    data: 'consulta=' + consulta.value,
+    success: function success(data) {
+      $('.alerta').fadeOut();
+      var readonly = document.querySelector('.readonly');
+
+      if (data == 'não foram encontrados usuarios') {
+        consulta.value = '';
+        readonly.value = data;
+        $('.identificacao').html('não foram encontrados usuarios');
+        $('.identificacao').show();
+        $('#identificacao').hide();
+        setTimeout(function () {
+          $('.identificacao').fadeOut();
+        }, 5000);
+      } else {
+        pesquisarnumero.setAttribute('disabled', 'disabled');
+        consulta.setAttribute('readonly', 'readonly');
+        $('#identificacao').show();
+        $('.identificacao').html('Esse é você?');
+        $('.identificacao').show();
+        $('.simregistro,.naoregistro').show();
+        readonly.value = data[0].nome;
+
+        if (consulta.value.length == 9) {
+          roleusuario.value = 3;
+          idusuario.value = data[0].siape;
+        } else {
+          roleusuario.value = 4;
+          idusuario.value = data[0].matricula;
+        }
+      }
+    },
+    //sucesso
+    error: function error() {
+      console.error('não deu');
+    } //error
+
+  }); //ajax
 });
-xis.addEventListener('click', function () {
-  modal.style.width = '0';
-  modal.style.height = '0';
-  document.body.style.overflow = "auto";
+$('.naoregistro').click(function () {
+  consulta.removeAttribute('readonly');
+  pesquisarnumero.removeAttribute('disabled');
+  consulta.focus();
+  $('.simregistro,.naoregistro').hide();
+  $('.identificacao').hide();
+  $('.readonly').hide();
 });
-modal.addEventListener('click', function () {
-  modal.style.width = '0';
-  modal.style.height = '0';
-  document.body.style.overflow = "auto";
-});
-form.addEventListener('click', function (e) {
-  e.stopPropagation();
+
+function blur(px) {
+  jscanvas.style.filter = px;
+  menuprincipal.style.filter = px;
+  footer.style.filter = px;
+  header.style.filter = px;
+  blurr.forEach(function (b) {
+    b.style.filter = px;
+  });
+}
+
+var submenuactive = false;
+openSubmenu.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  if (submenuactive == false) {
+    submenu.style.height = '90px';
+    submenuactive = true;
+  } else {
+    submenu.style.height = '0';
+    submenuactive = false;
+  }
 });
 hamburguer.addEventListener('click', function () {
-  // if(menuprincipal.style.display == 'block'){
-  //     menuprincipal.style.right='-450px';
-  //     setTimeout(function(){
-  //         menuprincipal.style.display = 'none';
-  //     },600);
-  // }else{
-  //     menuprincipal.style.display = 'block';
-  //     setTimeout(function(){
-  //         menuprincipal.style.right='0';
-  //     },100);
-  // }
   if (menuprincipal.style.width == '0px' || menuprincipal.style.width == '') {
     menuprincipal.style.width = '350px';
   } else {
     menuprincipal.style.width = '0';
   }
 });
-$(document).ready(function () {
-  $('.slide').slick({
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 2000,
-    fade: true,
-    cssEase: 'linear',
-    arrows: true,
-    prevArrow: $('.prev'),
-    nextArrow: $('.prox')
+
+function styleflow(elemento, width, height, overflow, e) {
+  e.preventDefault();
+  elemento.style.width = width;
+  elemento.style.height = height;
+  document.body.style.overflow = overflow;
+}
+
+if (login) {
+  login.addEventListener('click', function (e) {
+    styleflow(modal, '100%', '100vh', 'hidden', e);
+    blur('blur(5px)');
   });
+}
+
+xis.forEach(function (el) {
+  el.addEventListener('click', function (e) {
+    styleflow(modal, '100%', '0', 'auto', e);
+    blur('blur(0px)');
+  });
+});
+modal.addEventListener('click', function (e) {
+  styleflow(modal, '100%', '0', 'auto', e);
+  blur('blur(0px)');
+});
+form.forEach(function (e) {
+  e.addEventListener('click', function (ee) {
+    ee.stopPropagation();
+  });
+});
+contato.addEventListener('click', function (e) {
+  styleflow(contatoemail, '100%', '100vh', 'hidden', e);
+  blur('blur(5px)');
+});
+contatoemail.addEventListener('click', function (e) {
+  styleflow(contatoemail, '100%', '0', 'auto', e);
+  blur('blur(0px)');
+});
+xis2.addEventListener('click', function (e) {
+  styleflow(contatoemail, '100%', '0', 'auto', e);
+  blur('blur(0px)');
+});
+emailenviar.addEventListener('click', function (e) {
+  e.stopPropagation();
+});
+$(document).ready(function () {
+  // $('.slide').slick({
+  //     slidesToShow: 1,
+  //     slidesToScroll: 1,
+  //     autoplay: true,
+  //     autoplaySpeed: 2000,
+  //     fade: true,
+  //     cssEase: 'linear',
+  //     arrows:true,
+  //     prevArrow:$('.prev'),
+  //     nextArrow:$('.prox')
+  // });
   $('.egressosslide').slick({
     slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
     arrows: false
+  });
+
+  function validacao() {
+    var status = 0;
+
+    if (nome.value == '') {
+      erronome.innerHTML = 'Campo nome requerido!';
+      nome.style.borderColor = 'red';
+      status = 1;
+    } else {
+      erronome.innerHTML = '';
+      nome.style.borderColor = 'blue';
+    }
+
+    if (email.value == '') {
+      erroemail.innerHTML = 'Campo email requerido!';
+      email.style.borderColor = 'red';
+      status = 1;
+    } else {
+      var filtro = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+
+      if (!filtro.test(email.value)) {
+        erroemail.innerHTML = 'Insira um email valido!';
+        email.style.borderColor = 'red';
+        status = 1;
+      } else {
+        email.style.borderColor = 'blue';
+        erroemail.innerHTML = '';
+      }
+    }
+
+    if (assunto.value == '') {
+      erroassunto.innerHTML = 'Campo assunto requerido!';
+      assunto.style.borderColor = 'red';
+      status = 1;
+    } else {
+      assunto.style.borderColor = 'blue';
+      erroassunto.innerHTML = '';
+    }
+
+    if (mensagem.value == '') {
+      erromensagem.innerHTML = 'Campo de mensagem requerido!';
+      mensagem.style.borderColor = 'red';
+      status = 1;
+    } else {
+      mensagem.style.borderColor = 'blue';
+      erromensagem.innerHTML = '';
+    }
+
+    if (status == 1) {
+      return false;
+    }
+  }
+
+  enviar.addEventListener('click', function (e) {
+    e.preventDefault();
+    var validar;
+    validar = validacao();
+
+    if (validar == false) {
+      return false;
+    }
+
+    aviso.classList.remove('alert-success');
+    aviso.classList.remove('alert-danger');
+    aviso.classList.add('alert-primary');
+    aviso.innerHTML = 'Carregando...';
+    $('.alerta').fadeIn();
+    $.ajax({
+      type: "GET",
+      url: "api/email",
+      async: true,
+      data: 'nome=' + nome.value + '&email=' + email.value + '&assunto=' + assunto.value + '&mensagem=' + mensagem.value,
+      success: function success(data) {
+        nome.value = '';
+        email.value = '';
+        assunto.value = '';
+        mensagem.value = '';
+        console.log(data);
+        $('.alerta').fadeOut();
+        setTimeout(function () {
+          aviso.classList.remove('alert-primary');
+          aviso.classList.remove('alert-danger');
+          aviso.classList.add('alert-success');
+          aviso.innerHTML = data;
+          $('.alert').fadeIn();
+          setTimeout(function () {
+            $('.alert').fadeOut();
+          }, 5000);
+        }, 500);
+      },
+      //sucesso
+      error: function error(data) {
+        $('.alerta').fadeOut();
+        setTimeout(function () {
+          aviso.classList.remove('alert-success');
+          aviso.classList.remove('alert-primary');
+          aviso.classList.add('alert-danger');
+          aviso.innerHTML = 'Não foi possivel enviar a mensagem';
+          $('.alerta').fadeIn();
+          setTimeout(function () {
+            $('.alert').fadeOut();
+          }, 5000);
+        }, 500);
+        console.log(data);
+      } //error
+
+    }); //ajax
+  }); //enviar
+
+  function avisar() {
+    if (invalidofeedback) {
+      setTimeout(function () {
+        $('.invalidofeedback').fadeOut();
+      }, 5000);
+    }
+  }
+
+  regi.addEventListener('click', function (e) {
+    e.preventDefault();
+    log.style.width = '0';
+    reg.style.width = '500px';
+  });
+  logi.addEventListener('click', function (e) {
+    e.preventDefault();
+    reg.style.width = '0';
+    log.style.width = '500px';
+  });
+  var modalregister = document.querySelector('.modalregister');
+  var simregistro = document.querySelector('.simregistro');
+  simregistro.addEventListener('click', function (e) {
+    var readonly = document.querySelector('.readonly');
+    e.preventDefault();
+    reg.style.width = '0';
+    modalregister.style.width = '500px';
+    nomeregistro = document.querySelector('.nomeregistro');
+    nomeregistro.value = readonly.value;
+    idusuario1.value = idusuario.value;
+    roleusuario1.value = roleusuario.value;
+  });
+  var logivolta = document.querySelector('.logivolta');
+  logivolta.addEventListener('click', function (e) {
+    e.preventDefault();
+    reg.style.width = '500px';
+    modalregister.style.width = '0';
+  });
+  var submitregister = document.querySelector('.submitregister');
+  submitregister.addEventListener('click', function (e) {
+    var emailll = document.querySelector('#emailll');
+    var passwordd = document.querySelector('#passwordd');
+    var passwordConfirm = document.querySelector('#password-confirm');
+    var erroemail = document.querySelector('.erroemail');
+    var errosenha = document.querySelector('.errosenha');
+    var flag = true;
+    var filtro = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+
+    if (!filtro.test(emailll.value)) {
+      erroemail.innerHTML = 'Insira uma senha válida';
+      flag == false;
+    } else {
+      erroemail.innerHTML = '';
+    }
+
+    if (passwordd.value.length < 8) {
+      errosenha.innerHTML = 'Minimo de 8 caracteres';
+      flag == false;
+    } else {
+      if (passwordd.value != passwordConfirm.value) {
+        errosenha.innerHTML = 'As senhas não combinam.';
+        flag == false;
+      } else {
+        errosenha.innerHTML = '';
+      }
+    }
+
+    if (flag == false) {
+      e.preventDefault();
+    } else {
+      e.submit();
+    }
   });
 });
 

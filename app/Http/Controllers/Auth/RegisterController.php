@@ -7,6 +7,8 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Professore;
+use App\Aluno;
 
 class RegisterController extends Controller
 {
@@ -63,9 +65,17 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        if($data['role_id'] == 3){
+            $user = Professore::Where('siape',$data['info_id'])->update(['registro' => 'true']);
+        }else{
+            $user = Aluno::Where('matricula',$data['info_id'])->update(['registro' => 'true']);
+        }
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'info_id' => $data['info_id'],
+            'role_id' => $data['role_id'],
             'password' => Hash::make($data['password']),
         ]);
     }

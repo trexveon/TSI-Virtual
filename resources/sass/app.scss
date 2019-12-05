@@ -8,29 +8,78 @@
     margin:0;
     padding:0;
     box-sizing: border-box;
-    font-family: Tahoma, Helvetica, Arial;
+    font-family: 'Roboto','Tahoma', 'Helvetica', 'Arial',sans-serif;
 }
 html{
     scroll-behavior: smooth;
 }
 
-.false{
-    color:$false;
-}
-.modall{
-    display:flex;
-    opacity: 1;
-}
 
 body{
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; 
     background-color:$gray;
-    background-image: url("../assets/images/abstract.jpg"); 
+    // background-image: url("../assets/images/abstract.jpg");
+    background-color:#98AFEB; 
     background-size:cover;
     background-attachment: fixed;
     background-position: center;
     transition: background-image 0.4s;
     z-index: 1;
+
+    .submenu{
+            li{
+                &:hover{
+                .opensubmenu{
+                        li{
+                            background:white;
+                        }
+                    }
+                }
+            }
+
+        }
+
+    #canvas-js {
+        position:fixed;
+        top:0;
+        left:0;
+        height: 100vh;
+        width: 100% !important;
+        vertical-align: middle;
+        z-index:1;
+        color:white;
+        background-color:#d3d3d3;
+      }
     
+    // feedback----------------------------------------------------------------------------------------------------------------------------------
+    .invalidofeedback{
+        position:relative;
+        top:75px;
+        color:#856404;
+        left:0;
+        width:100%;
+        height:40px;
+        z-index:354000;
+        font-size:20px;
+        background-color: #FFF3CD;
+        padding-top:5px;
+        .x{
+            position: absolute;
+            right:10px;
+            top:12px;
+            color:#856404;
+            font-size:20px;
+            cursor:pointer;
+        }
+    }
+
+    .erro{
+        color:red;
+        font-style:italic;
+    }
+
+    // menuprincipal----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     .menuprincipal{
         position: fixed;
         z-index:1;
@@ -39,51 +88,340 @@ body{
         top:0;
         width:0;
         height:100vh;
-        background: #4860FF;
-        z-index:90000000000000000000000000;
-        transition: 0.3s ease-in-out;
-        border-bottom-left-radius: 100px;
+        background: white;
+        z-index:340000;
+        transition: 0.7s ease-in-out;
+        border-left:1px solid $tsiAzul;
         
         ul{
-            padding-top:150px;
+            padding-top:100px;
             width:80%;
             margin:0 auto;
             list-style:none;
             li{
+                padding-left:20px;
                 text-align:left;
                 padding: 10px 0;
-                border-top: 1px solid white;
+                border-top: 1px solid $tsiAzul;
                 width:100%;
+                color:white;
+                cursor:pointer;
+                transition:all 0.3s all ease-in-out;
                 &:hover{
-                    background: rgba(0,0,0,0.3);
+                    background: $tsiAzul;
+                    color:white;
                 }
                 a{
-                    color:white;
+                    color:$tsiAzul; 
                     padding-top: 10px;
                     padding-bottom: 10px;
                     padding-right: 80%;
+                    padding-left:10px;
                     &:hover{
                         text-decoration: none;
-                        
+                        color:white;
                     }
                     
+                }
+                ul{
+                    width:100%;
+                    border:none;
+                    padding-top:0;
+                    margin-top:30px;
+                    height:0;
+                    overflow:hidden;
+                    margin-top:0;
+                    transition: 0.3s all ease-in-out;
+                    
+                    li{
+                        border:none;
+                        border-top:1px solid white;
+                        color:white;
+                        transition: 0.3s all ease-in-out;
+                        background:white;
+                        border-top:1px solid $tsiAzul;
+                        a{
+                            padding-left:40px;
+                            color:$tsiAzul;
+                        }
+                        &:hover{
+                            border-top:1px solid $tsiAzul;
+                            &:last-child{
+                                border-bottom: none;        
+                            }
+                            ul{
+                                background:white;
+                            }
+                        }
+                    }
+                    &:last-child{
+                        border-bottom: none;        
+                    }
                 }
             }
             &:last-child{
                 border-bottom: 1px solid white;        
             }
         }
+
+    }
+// menuprincipal----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    // modal--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    .modalll{
+        outline: 0;
+        z-index:360000;
+        position:fixed;
+        overflow:hidden;
+        top:0;
+        right:0;
+        background-color: rgba(0,0,0,0.6);
+        width:100%;
+        height:0;
+        display:flex;
+        transition: all 0.9s ease-in-out;
+        
+        &::after{
+            filter: blur(5px);
+            position: absolute;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            background:rgba(0,0,0,0.9);
+            filter:blur(5px);
+        }
+        &::before{
+            filter: blur(5px);
+            position: absolute;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            background:rgba(0,0,0,0.9);
+            filter:blur(5px);
+        }
+            .modal-centerr{
+                .load{
+                    width:40%;
+                    height:100px;
+                    margin:0 auto;
+                    img{
+                        width:100%;
+                    }
+                }
+
+
+
+                transition:all 0.5s ease-in-out;
+                overflow:hidden;
+                width:500px;
+                padding-top:100px;
+                height:400px;
+                background: #fff;
+                border-radius: 10px;
+                position:relative; 
+                z-index:370000;
+                filter: blur(0px);
+                .registrar{
+                    width:100%;
+                    padding:20px;
+                    margin-top: 20px;
+                    height:50px;
+                }
+                .xis{
+                    color:$tsiAzul;
+                    position: absolute;
+                    top:15px;
+                    right:15px;
+                    border:1px solid $tsiAzul;
+                    width:25px;
+                    height:22px;
+                    border-radius: 5px;
+                    
+                }
+                label{
+                    color:$tsiAzul;
+                    font-style: italic;
+                }
+                .formregistro{
+                    display:block;
+                }
+            }
+            .modalregister{
+                width:0;
+                overflow:hidden;
+            }
+            .reg{
+                width:0;
+                input[type=text]{
+                    border-radius:5px;
+                }
+                .botaopesquisarnumero{
+                    width:100%;
+                    button{
+                        text-align:center;
+                        margin:0 auto;
+                        margin:20px 0;
+                    }
+                }
+                 .resultado{
+                    width:100%;
+                    margin:0 auto;
+                    text-align:center;
+                    label{
+                        display:none;
+
+                    }
+                    input[type=text]{
+                            display:none;
+                        }
+                    input[type=button]{
+                        margin:20px 30px;
+                        display:none;
+                    }
+                 }               
+            }
+    }
+    
+
+    .alerta{
+        width:350px;
+        position:absolute;
+        bottom: 25px;
+        right:25px;
+        display: none;
+        z-index:3700000;
+    }
+
+    .contatoemail{
+        z-index:400000;
+        position:fixed;
+        overflow:hidden;
+        top:0;
+        right:0;
+        background-color: rgba(0,0,0,0.6);
+        width:100%;
+        height:0;
+        display:flex;
+        transition: all 0.9s ease-in-out;
+        justify-content: center;
+        flex-direction: row;
+        align-items: center;
+        font-style: italic;
+
+
+        .emailenviar{
+            height:630;
+            width:480px;
+            background-color:white;
+            border-radius: 10px;
+            position:relative;
+            box-shadow: 2px 2px 5px black;
+            color:$tsiAzul;
+            .erro{
+                color:red;
+                text-align:left;
+                padding-left:120px;
+            }
+            .xis2{
+                position: absolute;
+                top:35px;
+                right:35px;
+                border:1px solid $tsiAzul;
+                width:25px;
+                height:25px;
+                border-radius: 5px;
+                transition: all 0.7s;
+                color:$tsiAzul;
+                cursor: pointer;
+                
+            }
+
+            h3{
+                text-align: center;
+                padding:30px;
+            }
+            label{
+                width:120px;
+                padding-left:30px;
+                padding-right:30px;
+            }
+            input[type=text]{
+                width:300px;
+                margin-top: 30px;
+                height:40px;
+                border-radius:5px;
+                border:1px solid blue;
+                transition: 0.4s ease-in-out all;
+                font-style: italic;
+                
+                &:focus{
+                    border:1px solid green;
+                    background:lightblue;
+                    outline: 0;
+                }            }
+            input[type=email]{
+                width:300px;
+                margin-top: 30px;
+                height:40px;
+                border-radius:5px;
+                border:1px solid blue;
+                font-style: italic;
+                transition: 0.4s ease-in-out all;
+                
+                &:focus{
+                    border:1px solid green;
+                    background:lightblue;
+                    outline: 0;
+                }
+            }
+            textarea{
+                margin-top: 30px;
+                width:300px;
+                height:100px;
+                border-radius:5px;
+                border:1px solid blue;
+                font-style: italic;
+                transition: 0.4s ease-in-out all;
+                
+                &:focus{
+                    border:1px solid green;
+                    background:lightblue;
+                    outline: 0;
+                }
+            }
+            div{
+                width:100%;
+                margin: 0 auto;
+                text-align: center;
+                .enviar{
+                    text-align: center;
+                    width:100px;
+                    margin: 0 auto;
+                    
+                    font-style:italic;
+                    padding:10px 20px;
+                    
+                    
+                    margin:20px;
+                    
+                }
+            }
+        }
     }
 
 
+// header--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     header{
         width:100%;
         height:75px;
         background-color:$tsiAzul;
         position:fixed;
-            top:0;
-            left:0;
-            z-index: 30000000000000;
+        top:0;
+        left:0;
+        z-index: 355000;
+        
                 nav{
                     color:white;
 
@@ -104,7 +442,7 @@ body{
                                     position:relative;
                                     input[type='search']{
                                         margin-right: 20px;
-                                        width:105px;
+                                        width:200px;
                                         transition:all 0.5s;
                                         height: 30px;
                                        
@@ -121,28 +459,46 @@ body{
                                     }
                                 }
                                 
-                                a{
-                                    color:white;
-                                    padding:6px 20px;
-                                    background-color:blue;
-                                    transition:all 0.5s;
-                                    margin-left: 5px;
-                                    border-radius: 15px;
-
-                                    &:hover{
-                                        text-decoration: none;
-                                        background-color:white;
-                                        color:green;
-                                    }
-                                }
+                                
                                 ul{
                                     margin:0;
                                     padding:0;
+                                    width:130px;
+                                    margin-left:20px;
+                                    position:relative;
+                                    top:2px;
+                                    left:0;
                                     li{
-                                        display:inline;
+                                        width:100%;
+                                        height:24px;
                                         margin-right: 10px;
                                         list-style: none;
+                                        background-color:white;
+                                        text-align:center;
+                                        border-radius: 5px;
+                                        margin-bottom:3px;
+                                        a{
+                                           width:100%; 
+                                           height:100%;
+                                            margin-left: 5px;
+                                            border-radius: 5px;
+                                            font-size:12px;
+                                            text-decoration: none;
+                                            padding: 3px 15px; 
+                                            color:$tsiAzul;
+                                            position:relative;
+                                           text-align:center;
+                                        }
+                                        
                                     }
+                                    #botaoperfil{
+                                            border:1px solid $tsiAzul;
+                                            display:none;
+                                        }
+                                        #botaologout{
+                                            border:1px solid $tsiAzul;
+                                            display:none;
+                                        }
                                 }
                             }
 
@@ -150,30 +506,22 @@ body{
                                 label{
                                     .hamburguer{
                                         cursor:pointer;
-                                        width:50px;
+                                        width:30px;
                                         height: 50px;
-                                        background: blue;
-                                        border-radius:100%;
+                                        
+                                        
                                         display:block;
                                         position:relative;
                                         transition: all 0.3s ease-in-out;
-                                        &:hover{
-                                            background-color:white;
-                                            border:1px solid green;
-                                            span{
-                                                background-color:green;
-                                                &::after{background-color:green;}
-                                                &::before{background-color:green;}
-                                            }
-                                        }
+                                        
                                         span{
                                             display:block;
                                             background:#fff;
                                             width:30px;
-                                            height:2px;
+                                            height:4px;
                                             position:relative;
                                             top:25px;
-                                            left:10px;
+                                            left:0;
                                             transition: 0.5s ease-in-out;
                                                 &::before{
                                                     background:#fff;
@@ -227,70 +575,31 @@ body{
                         }
                     }
                 }
-
-
+// header--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
                 
 
-
-                
-        
-
-        .modalll{
-            z-index:1000000000000000000000000000;
-            position:fixed;
-            overflow:hidden;
-            top:0;
-            right:0;
-            background-color: rgba(0,0,0,0.6);
-            width:0;
-            height:0;
-            display:flex;
-            transition: all 0.6s ease-in-out;
-                .modal-centerr{
-                    width:320px;
-                    height:400px;
-                    background: white;
-                    border-radius: 50px;
-                    position:relative;
-                    .xis{
-                        position: absolute;
-                        top:15px;
-                        right:15px;
-                        border:1px solid gray;
-                        width:25px;
-                        height:25px;
-                        border-radius: 5px;
-                        transition: all 0.7s;
-                        &:hover{
-                            background-color:gray;
-                            color:white;
-                            cursor:pointer;
-                        }
-                    }
-                }
-        }
-        .modall{
-            display:flex;
-            opacity: 1;
-        }
-
+    // conteudo-------------------------------------------------------------------------------------------------------------------------------------------------------------
     .conteudo {
         width:100%;
         height:auto;
-        background:rgba(0,0,0,0.6);
+        background:white;
+        border:1px solid $tsiAzul;
+        border-radius:5px;
         margin: 100px auto;
         width:90%;
         position:relative;
+        z-index:2;
             .prev{
                 position:absolute;
-                top:41%;
-                left:50px;
+                top:38%;
+                left:75px;
                 background: rgba(0,0,0,0.3);
                 width:100px;
                 height:100px;
-                border-radius: 100%;
-                transition:all 0.3s;
+                
+                
                 img{
+                    transition:all 0.3s;
                     &:hover{
                         transform:scale(1.2);
                     }
@@ -298,29 +607,31 @@ body{
             }
             .prox{
                 position:absolute;
-                top:41%;
-                right:50px; 
+                top:38%;
+                right:75px; 
                 background: rgba(0,0,0,0.3);
                 width:100px;
                 height:100px;
-                border-radius: 100%;
-                transition:all 0.3s;
+               
+                
                 img{
+                    transition:all 0.3s;
                     transform:rotate(180deg);
                     &:hover{
                         transform:rotate(180deg) scale(1.2);
                     }
                 }
             }
-        h3{
-            color:white;
+        h4{
+            color:$tsiAzul;
             padding:20px;
         }
         .slide{
             width:100%;
             height:auto;
-            
+            padding: 0 60px;
             .noticiaslide{
+
                 padding:0;
                 width:100%;
                 margin:0 auto;
@@ -344,12 +655,29 @@ body{
                         height:100px;
                         background-color:rgba(0,0,0,0.3);
                         .titulo{
-                            font-size:40px;
-                            margin-left:20px;
+                            font-size:24px;
+                            margin-left:16px;
                         }
                         .data{
                             font-size:15px;
                             margin-left:20px;
+                        }
+                    }
+                }
+           }
+           .item-secondary{
+            height:215px;
+            a{
+                    
+                    .noticiatitulo{
+             height:auto;
+                        .titulo{
+                            font-size:20px;
+                            
+                        }
+                        .data{
+                            font-size:12px;
+                            
                         }
                     }
                 }
@@ -366,15 +694,21 @@ body{
         }
     
     }
+// conteudo-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-    .egressos{
+// egressos------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    .egressoss{
+        position:relative;
+        z-index:2;
         width:100%;
         height:auto;
-        background: rgba(0,0,0,0.3);
+        background: #fff;
+        border-color:1px solid $tsiAzul;
+        border-radius:5px;
         margin-bottom:100px;
         h3{
-            color:white;
+            color:$tsiAzul;
             text-align: center;
             padding:20px;
         }
@@ -416,7 +750,7 @@ body{
             
         }
 
-        .egressoss{
+        .egressosss{
             margin:20px auto;
             text-align:center;
             padding-bottom: 20px;
@@ -426,12 +760,360 @@ body{
             }
         }
     }
+    // egressos------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    // noticias---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    .noticias{
+        .paginacao{
+            padding-top:30px;
+        }
+        margin-top:150px;
+        margin-bottom:200px;
+        position:relative;
+        z-index:2;
+        h3,h2,h1{
+            text-align: center;
+            color:$tsiAzul;
+        }
+
+        .pesquisa{
+            width:100%;
+            height:auto;
+            background:$tsiAzul;
+            padding:20px;
+            margin-bottom: 30px;
+            position:relative;
+            border-radius: 5px;
+            input[type=submit]{
+                position:absolute;
+                top:20px;
+                right:20px;
+                height:50%;
+                width:10%;
+                color:white;
+                font-weight: bold;
+                background:#475FB3;
+                border:none;
+            }
+            .reload{
+                position:absolute;
+                top:20px;
+                right:130px;
+                height:50%;
+                width:10%;
+                color:white;
+                font-weight: bold;
+                background:#477FCC;
+                border:none;
+                &:hover{
+                    text-decoration: none;
+                }
+            } 
+        }
+        .row{
+            width:100%;
+            a{
+                width:100%;
+                font-size:25px;
+                background:white;
+                border:1px solid $tsiAzul;
+                color:$tsiAzul;
+                margin-top:10px;
+                padding-top:10px;
+                padding-bottom:10px;
+                transition: all 0.3s ease;
+                border-radius: 5px;
+                &:hover{
+                   background:$tsiAzul;
+                   .titulo{
+                        color:white;
+                   } 
+                }
+                    .foto{
+                        height:100px;
+                        width:16%;
+                        background-size:cover;
+                        background-repeat: no-repeat;
+                        background-position: center;
+                       margin-left:10px;
+                        float:left;
+                    }
+                    .titulo{
+                        width:80%;
+                        height:100px;
+                        color:$tsiAzul;
+                        float:left;
+                        clear:right;
+                        padding:0;
+                        margin:0;
+                        display:flex;
+                        align-items: center;
+                        flex-direction: column;
+                        justify-content: space-around;
+                        float:left;
+                        h4{
+                            font-size:20px;
+                        }
+                        p{
+                            font-size:10px;
+                        }
+                    }
+                
+            }
+        }
+        
+    }//noticias-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    //visualizarnoticias---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    .visualizarnoticias{
+        position:relative;
+        z-index:2;
+        background:$azulconteudo;
+        margin-top:120px;
+        margin-bottom:120px;
+        padding-top:20px;
+        color:white;
+        .imagem{
+            width:100%;
+            height:500px;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            position:relative;
+            .titulo{
+                position:absolute;
+                bottom:0;
+                left:0;
+                width:100%;
+                height:100px;
+                background-color:rgba(0,0,0,0.6);
+                padding:20px;
+            }
+            
+        }
+        .conteudonoticia{ 
+            padding:20px;
+            font-size:20px;
+            
+        }
+    }
+    //visualizarnoticias-----------------------------------------------------------------------------------------------------------------------------------------
+
+    //tccs--------------------------------------------------------------------------------------------------------------------------------------------------------
+    .tccs{
+        position:relative;
+        z-index:2;
+        color:white;
+        padding:120px 0 250px 0;
+        .paginacao{
+            margin-top:20px;
+        }
+        h1,h3,h2{
+            text-align: center;
+            text-shadow: 4px 4px 4px black;
+        }
+        .pesquisa{
+            width:100%;
+            height:auto;
+            background:$tsiAzul;
+            padding:20px;
+            margin-bottom: 30px;
+            position:relative;
+            input[type=submit]{
+                position:absolute;
+                top:20px;
+                right:20px;
+                height:50%;
+                width:10%;
+                color:white;
+                font-weight: bold;
+                background:#475FB3;
+                border:none;
+            }
+            .reload{
+                position:absolute;
+                top:20px;
+                right:130px;
+                height:50%;
+                width:10%;
+                color:white;
+                font-weight: bold;
+                background:#477FCC;
+                border:none;
+                &:hover{
+                    text-decoration: none;
+                }
+            }
+        }
+        .cabecalho{
+            .cabeca{
+                padding:20px;
+                background:#445180;
+                display:flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: row;
+                border-left:1px solid white;
+            }
+            .first{
+                border-left:none;
+                
+            }
+        }
+
+        .conteudotcc{
+            transition:all 0.3s ease-in-out;
+                &:hover .itemtcc{
+                    background:#4F6CFF;
+                }
+            .itemtcc{
+                margin-top:5px;
+                padding:5px;
+                background:#7D9BFF;
+                display:flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: row;
+                border-left:1px solid white;
+                cursor:pointer;
+                a{
+                    img{
+                        width:60px;
+                        
+                    }
+                }
+            }
+            .first{
+                border-left:none;
+                
+            }
+        }
+        
+    }
+    //tccs--------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
+// egressos---------------------------------------------------------------------------------------------------------------------------------------------------------
+    .egressos{
+        position:relative;
+        z-index:2;
+        color:$tsiAzul;
+        padding:120px 0 250px 0;
+        background-color:transparent;
+        .paginacao{
+            margin-top:20px;
+        }
+        h1,h3,h2{
+            text-align: center;
+        }
+        .pesquisa{
+            width:100%;
+            height:auto;
+            background:$tsiAzul;
+            padding:20px;
+            margin-bottom: 30px;
+            position:relative;
+            input[type=submit]{
+                position:absolute;
+                top:20px;
+                right:20px;
+                height:50%;
+                width:10%;
+                color:white;
+                font-weight: bold;
+                background:#475FB3;
+                border:none;
+            }
+            .reload{
+                position:absolute;
+                top:20px;
+                right:130px;
+                height:50%;
+                width:10%;
+                color:white;
+                font-weight: bold;
+                background:#477FCC;
+                border:none;
+                &:hover{
+                    text-decoration: none;
+                }
+            }
+        }
+        
+        .row{
+            background:white;
+            border:1px solid $tsiAzul;
+            border-radius: 5px;
+            height:auto;
+            margin-bottom:10px;
+            border:1px solid white;
+            padding: 40px 0;
+            .foto{
+                width:90%;
+               
+                height:150px;
+                border-radius: 100%;
+                background-size:cover;
+                background-position: center;
+                border:1px solid white;
+            }
+            .dados{
+                height:180px;
+                color:$tsiAzul;
+            }
+            .col-7{
+                 margin:0;
+                 padding:0;
+                 padding-right:15px;
+                .testemunho{
+                    overflow-x:hidden;
+                    overflow-y:scroll;
+                    height:180px;
+                    padding:0 20px;
+                    border-left:1px solid $tsiAzul;
+                    margin:0;
+                    color:$tsiAzul;
+                }
+            }
+        }
+      
+
+        .relato{
+            height:auto;
+            padding:0;
+            .col-7{
+                height:100%;
+                padding:20px;
+                background:#white;
+                border-left:1px solid white;
+           }
+           .col-5{
+                height:100%;
+                padding:20px;
+                background:white;
+                border-left:none;
+           }
+
+            .first{
+                border-left:none;
+                height:100%;
+                
+            }
+        }
+        
+    }
+    //egressos--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    //footer-------------------------------------------------------------------------------------------------------------------------------------------------------
     footer{
+        margin-top: 100px;
+        clear:both;
         width:100%;
-        background-color:rgba(58,88,255,0.9);
+        background-color:$tsiAzul;
         height:180px;
+        position:relative;
+        z-index:2;
+        box-shadow: 2px 2px 2px black;
         .container{
             border-top:1px solid white;
             .cont{
@@ -464,6 +1146,7 @@ body{
             }
         }
     }
+    //footer-------------------------------------------------------------------------------------------------------------------------------------------------------   
 }
 
 
